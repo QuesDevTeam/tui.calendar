@@ -6,7 +6,7 @@ import { Template } from '@src/components/template';
 import { useDispatch, useStore } from '@src/contexts/calendarStore';
 import { useEventBus } from '@src/contexts/eventBus';
 import { useLayoutContainer } from '@src/contexts/layoutContainer';
-import { cls, getEventColors, toPercent, toPx } from '@src/helpers/css';
+import { cls, getEventColors, toPercent } from '@src/helpers/css';
 import { DRAGGING_TYPE_CREATORS } from '@src/helpers/drag';
 import { useCalendarColor } from '@src/hooks/calendar/useCalendarColor';
 import { useDrag } from '@src/hooks/common/useDrag';
@@ -66,7 +66,7 @@ function getEventItemStyle({
     borderRadius: getBorderRadius(exceedLeft, exceedRight),
     overflow: 'hidden',
     height: eventHeight,
-    lineHeight: toPx(eventHeight),
+    lineHeight: '24px',
     opacity: isDraggingTarget ? 0.5 : 1,
   };
   const margins = getMargins(flat);
