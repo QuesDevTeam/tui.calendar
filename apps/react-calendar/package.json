@@ -42,7 +42,7 @@
     "build:types": "rimraf types/ && tsc -p ./tsconfig.declaration.json"
   },
   "dependencies": {
-    "@toast-ui/calendar": "github::QuesDevTeam/tui-calendar.git"
+    "@toast-ui/calendar": "github:QuesDevTeam/tui-calendar.git"
   },
   "devDependencies": {
     "@types/react": "^17.0.2",
