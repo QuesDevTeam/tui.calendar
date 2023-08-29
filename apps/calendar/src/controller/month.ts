@@ -192,7 +192,7 @@ export function findByDateRange(
   const uiModelColl = convertToUIModel(coll);
   _addMultiDatesInfo(uiModelColl);
   _adjustRenderRange(start, end, uiModelColl);
-  const vList = uiModelColl.sort(array.compare.event.asc);
+  const vList = uiModelColl.toArray();
   const usingTravelTime = false;
   const collisionGroup = getCollisionGroup(vList, usingTravelTime);
   const matrices = getMatrices(uiModelColl, collisionGroup, usingTravelTime);
