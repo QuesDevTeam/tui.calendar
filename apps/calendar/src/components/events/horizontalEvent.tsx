@@ -68,6 +68,7 @@ function getEventItemStyle({
     height: eventHeight,
     lineHeight: '24px',
     opacity: isDraggingTarget ? 0.5 : 1,
+    border: exceedLeft ? 'none' : `1px solid ${borderColor}`,
   };
   const margins = getMargins(flat);
 
@@ -262,7 +263,7 @@ export function HorizontalEvent({
         style={{
           ...eventItemStyle,
           backgroundColor: isDotEvent ? null : eventItemStyle.backgroundColor,
-          borderLeft: isDotEvent ? null : eventItemStyle.borderLeft,
+          border: isDotEvent ? null : eventItemStyle.border,
         }}
         onMouseDown={handleMoveStart}
       >
