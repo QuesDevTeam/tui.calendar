@@ -14,6 +14,7 @@ interface Props {
   eventHeight?: number;
   events: EventUIModel[];
   className: string;
+  isOneEventCalendar?: boolean;
 }
 
 export const MonthEvents = memo(function MonthEvents({
@@ -22,19 +23,26 @@ export const MonthEvents = memo(function MonthEvents({
   events,
   name,
   className,
+  isOneEventCalendar = false,
 }: Props) {
   const { headerHeight } = useTheme(monthGridCellSelector);
 
+  const parsedEventHeight = isOneEventCalendar ? 0 : eventHeight;
   const dayEvents = events
-    .filter(isWithinHeight(contentAreaHeight, eventHeight + MONTH_EVENT_MARGIN_TOP))
+    .filter(isWithinHeight(contentAreaHeight, parsedEventHeight + MONTH_EVENT_MARGIN_TOP))
     .map((uiModel) => (
       <HorizontalEvent
         key={`${name}-DayEvent-${uiModel.cid()}`}
         uiModel={uiModel}
         eventHeight={eventHeight}
         headerHeight={headerHeight ?? MONTH_CELL_BAR_HEIGHT}
+        isOneEventCalendar={isOneEventCalendar}
       />
     ));
 
-  return <div className={className}>{dayEvents}</div>;
+  return (
+    <div className={className} style={isOneEventCalendar ? { height: '100%' } : {}}>
+      {dayEvents}
+    </div>
+  );
 });

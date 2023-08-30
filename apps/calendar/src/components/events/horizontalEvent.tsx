@@ -130,7 +130,8 @@ export function HorizontalEvent({
   headerHeight,
   resizingWidth = null,
   movingLeft = null,
-}: Props) {
+  isOneEventCalendar = false,
+}: Props & { isOneEventCalendar?: boolean }) {
   const { currentView } = useStore(viewSelector);
   const { useDetailPopup, isReadOnly: isReadOnlyCalendar } = useStore(optionsSelector);
 
@@ -252,7 +253,11 @@ export function HorizontalEvent({
         'weekday-exceed-left': uiModel.exceedLeft,
         'weekday-exceed-right': uiModel.exceedRight,
       })}
-      style={containerStyle}
+      style={{
+        ...containerStyle,
+        height: isOneEventCalendar ? 'calc(100% - 1px)' : 'unset',
+        top: isOneEventCalendar ? 1 : containerStyle.top,
+      }}
       data-testid={passConditionalProp(isDraggableEvent, getTestId(uiModel))}
       data-calendar-id={calendarId}
       data-event-id={id}
@@ -260,11 +265,19 @@ export function HorizontalEvent({
     >
       <div
         className={classNames.eventBody}
-        style={{
-          ...eventItemStyle,
-          backgroundColor: isDotEvent ? null : eventItemStyle.backgroundColor,
-          border: isDotEvent ? null : eventItemStyle.border,
-        }}
+        style={
+          isOneEventCalendar
+            ? {
+                height: '100%',
+                border: 'none',
+                backgroundColor: eventItemStyle.backgroundColor,
+              }
+            : {
+                ...eventItemStyle,
+                backgroundColor: isDotEvent ? null : eventItemStyle.backgroundColor,
+                border: isDotEvent ? null : eventItemStyle.border,
+              }
+        }
         onMouseDown={handleMoveStart}
       >
         {isDotEvent ? (

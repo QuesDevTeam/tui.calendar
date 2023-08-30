@@ -89,6 +89,7 @@ function initializeMonthOptions(monthOptions: Options['month'] = {}): CalendarMo
     startDayOfWeek: Day.SUN,
     isAlways6Weeks: true,
     visibleEventCount: 6,
+    isOneEventCalendar: false,
     ...monthOptions,
   };
 

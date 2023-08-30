@@ -40,6 +40,7 @@ export interface MonthOptions {
   isAlways6Weeks?: boolean;
   workweek?: boolean;
   visibleEventCount?: number;
+  isOneEventCalendar?: boolean;
 }
 
 export interface GridSelectionOptions {

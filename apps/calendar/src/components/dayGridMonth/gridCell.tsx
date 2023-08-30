@@ -182,9 +182,17 @@ interface Props {
   parentContainer?: HTMLDivElement | null;
   events?: EventUIModel[];
   contentAreaHeight: number;
+  isOneEventCalendar?: boolean;
 }
 
-export function GridCell({ date, events = [], style, parentContainer, contentAreaHeight }: Props) {
+export function GridCell({
+  date,
+  events = [],
+  style,
+  parentContainer,
+  contentAreaHeight,
+  isOneEventCalendar,
+}: Props) {
   const layoutContainer = useLayoutContainer();
   const { showSeeMorePopup } = useDispatch('popup');
   const backgroundColor = useTheme(weekendBackgroundColorSelector);
@@ -205,15 +213,18 @@ export function GridCell({ date, events = [], style, parentContainer, contentAre
     }
   }, [date, events, popupPosition, showSeeMorePopup]);
 
+  const monthEventHeight = isOneEventCalendar ? 0 : MONTH_EVENT_HEIGHT;
   const exceedCount = getExceedCount(
     events,
     contentAreaHeight,
-    MONTH_EVENT_HEIGHT + MONTH_EVENT_MARGIN_TOP
+    monthEventHeight + MONTH_EVENT_MARGIN_TOP
   );
 
   return (
     <div
-      className={cls('daygrid-cell')}
+      className={`${cls('daygrid-cell')} ${
+        isOneEventCalendar ? cls('daygrid-cell-custom-disabled') : ''
+      }`}
       style={{ ...style, backgroundColor: isWeekend(date.getDay()) ? backgroundColor : 'inherit' }}
       ref={containerRefCallback}
     >

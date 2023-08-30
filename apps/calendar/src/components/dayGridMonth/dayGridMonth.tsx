@@ -37,6 +37,7 @@ interface Props {
   dateMatrix: TZDate[][];
   rowInfo: CellInfo[];
   cellWidthMap: string[][];
+  isOneEventCalendar?: boolean;
 }
 
 function useCellContentAreaHeight(eventHeight: number) {
@@ -63,7 +64,12 @@ function useCellContentAreaHeight(eventHeight: number) {
   return { ref, cellContentAreaHeight };
 }
 
-export function DayGridMonth({ dateMatrix = [], rowInfo = [], cellWidthMap = [] }: Props) {
+export function DayGridMonth({
+  dateMatrix = [],
+  rowInfo = [],
+  cellWidthMap = [],
+  isOneEventCalendar = false,
+}: Props) {
   const [gridContainer, setGridContainerRef] = useDOMNode<HTMLDivElement>();
   const calendar = useStore(calendarSelector);
   // TODO: event height need to be dynamic
@@ -121,6 +127,7 @@ export function DayGridMonth({ dateMatrix = [], rowInfo = [], cellWidthMap = [] 
                 week={week}
                 rowInfo={rowInfo}
                 contentAreaHeight={cellContentAreaHeight}
+                isOneEventCalendar={isOneEventCalendar}
               />
               <MonthEvents
                 name="month"
@@ -128,6 +135,7 @@ export function DayGridMonth({ dateMatrix = [], rowInfo = [], cellWidthMap = [] 
                 contentAreaHeight={cellContentAreaHeight}
                 eventHeight={MONTH_EVENT_HEIGHT}
                 className={cls('weekday-events')}
+                isOneEventCalendar={isOneEventCalendar}
               />
               <GridSelectionByRow
                 weekDates={week}

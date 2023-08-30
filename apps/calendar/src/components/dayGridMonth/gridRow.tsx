@@ -17,6 +17,7 @@ interface Props {
   week: TZDate[];
   rowInfo: CellStyle[];
   contentAreaHeight: number;
+  isOneEventCalendar?: boolean;
 }
 
 export const GridRow = memo(function GridRow({
@@ -24,6 +25,7 @@ export const GridRow = memo(function GridRow({
   rowInfo,
   gridDateEventModelMap = {},
   contentAreaHeight,
+  isOneEventCalendar = false,
 }: Props) {
   const [container, containerRefCallback] = useDOMNode<HTMLDivElement>();
   const border = useTheme(useCallback((theme) => theme.common.border, []));
@@ -46,6 +48,7 @@ export const GridRow = memo(function GridRow({
             parentContainer={container}
             events={gridDateEventModelMap[ymd]}
             contentAreaHeight={contentAreaHeight}
+            isOneEventCalendar={isOneEventCalendar}
           />
         );
       })}

@@ -55,7 +55,12 @@ export function Month() {
         options={monthOptions}
         rowStyleInfo={rowStyleInfo}
       />
-      <DayGridMonth dateMatrix={dateMatrix} rowInfo={rowInfo} cellWidthMap={cellWidthMap} />
+      <DayGridMonth
+        dateMatrix={dateMatrix}
+        rowInfo={rowInfo}
+        cellWidthMap={cellWidthMap}
+        isOneEventCalendar={monthOptions.isOneEventCalendar}
+      />
     </Layout>
   );
 }
