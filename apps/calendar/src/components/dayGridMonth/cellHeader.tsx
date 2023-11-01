@@ -22,6 +22,7 @@ interface Props {
   exceedCount?: number;
   date: TZDate;
   onClickExceedCount: () => void;
+  isOneEventCalendar?: boolean;
 }
 
 function getDateColor({
@@ -63,6 +64,25 @@ function getDateColor({
   return dayName.color;
 }
 
+function getDateDisplay({
+  isOneEventCalendar,
+  date,
+  renderDate,
+}: {
+  isOneEventCalendar?: boolean;
+  date: TZDate;
+  renderDate: TZDate;
+}) {
+  const thisMonth = renderDate.getMonth();
+  const isSameMonth = thisMonth === date.getMonth();
+
+  if (isOneEventCalendar && !isSameMonth) {
+    return 'none';
+  }
+
+  return 'inline-block';
+}
+
 function useCellHeaderTheme() {
   const common = useCommonTheme();
   const month = useMonthTheme();
@@ -75,6 +95,7 @@ export function CellHeader({
   exceedCount = 0,
   date,
   onClickExceedCount,
+  isOneEventCalendar,
 }: Props) {
   const { renderDate } = useStore(viewSelector);
 
@@ -94,7 +115,10 @@ export function CellHeader({
     month: date.getMonth(),
     ymd,
   };
-  const gridCellDateStyle = { color: getDateColor({ date, theme, isToday, renderDate }) };
+  const gridCellDateStyle = {
+    color: getDateColor({ date, theme, isToday, renderDate }),
+    display: getDateDisplay({ date, renderDate, isOneEventCalendar }),
+  };
   const monthGridTemplate = `monthGrid${capitalize(type)}` as TemplateName;
 
   if (isNil(height)) {

@@ -233,12 +233,14 @@ export function GridCell({
         exceedCount={exceedCount}
         date={date}
         onClickExceedCount={onOpenSeeMorePopup}
+        isOneEventCalendar={isOneEventCalendar}
       />
       <CellHeader
         type={CellBarType.footer}
         exceedCount={exceedCount}
         date={date}
         onClickExceedCount={onOpenSeeMorePopup}
+        isOneEventCalendar={isOneEventCalendar}
       />
     </div>
   );
