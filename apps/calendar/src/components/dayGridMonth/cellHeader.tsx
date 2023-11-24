@@ -1,7 +1,6 @@
 import { h } from 'preact';
 import { useMemo } from 'preact/hooks';
 
-import { MoreEventsButton } from '@src/components/dayGridMonth/moreEventsButton';
 import { Template } from '@src/components/template';
 import { CellBarType } from '@src/constants/grid';
 import { useStore } from '@src/contexts/calendarStore';
@@ -130,14 +129,14 @@ export function CellHeader({
       <span className={cls('grid-cell-date')} style={gridCellDateStyle}>
         <Template template={monthGridTemplate} param={templateParam} />
       </span>
-      {exceedCount ? (
+      {/* {exceedCount ? (
         <MoreEventsButton
           type={type}
           number={exceedCount}
           onClickButton={onClickExceedCount}
           className={cls('grid-cell-more-events')}
         />
-      ) : null}
+      ) : null} */}
     </div>
   );
 }
