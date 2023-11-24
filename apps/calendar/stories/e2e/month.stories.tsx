@@ -2,7 +2,7 @@ import { h } from 'preact';
 
 import {
   MOCK_MONTH_VIEW_BASE_DATE,
-  mockMonthViewEventsFixed,
+  MOCK_MONTH_VIEW_EVENTS,
 } from '@stories/mocks/mockMonthViewEvents';
 import type { CalendarExampleStory } from '@stories/util/calendarExample';
 import { CalendarExample } from '@stories/util/calendarExample';
@@ -32,7 +32,7 @@ FixedEvents.args = {
   },
   onInit: (cal) => {
     cal.setDate(MOCK_MONTH_VIEW_BASE_DATE);
-    cal.createEvents(mockMonthViewEventsFixed);
+    cal.createEvents(MOCK_MONTH_VIEW_EVENTS);
     cal.on('beforeUpdateEvent', ({ event, changes }) => {
       cal.updateEvent(event.id, event.calendarId, changes);
     });
