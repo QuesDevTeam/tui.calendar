@@ -130,7 +130,7 @@ export function DayGridMonth({
             style={{ height: toPercent(rowHeight), overflow: 'auto', borderTop: border }}
             ref={ref}
           >
-            <div className={cls('weekday')} style={{ height: weekHeight }}>
+            <div className={cls('weekday')} style={{ height: weekHeight, minHeight: '100%' }}>
               <GridRow
                 gridDateEventModelMap={gridDateEventModelMap}
                 week={week}
