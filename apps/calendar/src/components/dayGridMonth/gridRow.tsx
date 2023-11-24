@@ -1,9 +1,7 @@
 import { h } from 'preact';
 import { memo } from 'preact/compat';
-import { useCallback } from 'preact/hooks';
 
 import { GridCell } from '@src/components/dayGridMonth/gridCell';
-import { useTheme } from '@src/contexts/themeStore';
 import { cls, toPercent } from '@src/helpers/css';
 import { useDOMNode } from '@src/hooks/common/useDOMNode';
 import type EventUIModel from '@src/model/eventUIModel';
@@ -30,10 +28,10 @@ export const GridRow = memo(function GridRow({
   height,
 }: Props) {
   const [container, containerRefCallback] = useDOMNode<HTMLDivElement>();
-  const border = useTheme(useCallback((theme) => theme.common.border, []));
+  // const border = useTheme(useCallback((theme) => theme.common.border, []));
 
   return (
-    <div className={cls('weekday-grid')} style={{ borderTop: border }} ref={containerRefCallback}>
+    <div className={cls('weekday-grid')} ref={containerRefCallback}>
       {week.map((date, columnIndex) => {
         const dayIndex = date.getDay();
         const { width, left } = rowInfo[columnIndex];

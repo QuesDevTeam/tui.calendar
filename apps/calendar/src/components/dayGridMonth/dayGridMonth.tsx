@@ -13,6 +13,7 @@ import {
   MONTH_EVENT_HEIGHT,
   MONTH_EVENT_MARGIN_TOP,
 } from '@src/constants/style';
+import { DEFAULT_COMMON_THEME } from '@src/constants/theme';
 import { useStore } from '@src/contexts/calendarStore';
 import { useTheme } from '@src/contexts/themeStore';
 import { cls, toPercent } from '@src/helpers/css';
@@ -114,6 +115,8 @@ export function DayGridMonth({
       {dateMatrix.map((week, rowIndex) => {
         const { uiModels, gridDateEventModelMap } = renderedEventUIModels[rowIndex];
 
+        const { border } = DEFAULT_COMMON_THEME;
+
         const eventCountPerDay = Object.entries(gridDateEventModelMap).map(
           ([_, value]) => value.length
         );
@@ -124,7 +127,7 @@ export function DayGridMonth({
           <div
             key={`dayGrid-events-${rowIndex}`}
             className={cls('month-week-item')}
-            style={{ height: toPercent(rowHeight), overflow: 'auto' }}
+            style={{ height: toPercent(rowHeight), overflow: 'auto', borderTop: border }}
             ref={ref}
           >
             <div className={cls('weekday')} style={{ height: weekHeight }}>
