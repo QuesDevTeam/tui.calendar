@@ -114,20 +114,27 @@ export function DayGridMonth({
       {dateMatrix.map((week, rowIndex) => {
         const { uiModels, gridDateEventModelMap } = renderedEventUIModels[rowIndex];
 
+        const eventCountPerDay = Object.entries(gridDateEventModelMap).map(
+          ([_, value]) => value.length
+        );
+        const maxEventCountPerWeek = Math.max(...eventCountPerDay) + 1;
+        const weekHeight = maxEventCountPerWeek * MONTH_EVENT_HEIGHT;
+
         return (
           <div
             key={`dayGrid-events-${rowIndex}`}
             className={cls('month-week-item')}
-            style={{ height: toPercent(rowHeight) }}
+            style={{ height: toPercent(rowHeight), overflow: 'auto' }}
             ref={ref}
           >
-            <div className={cls('weekday')}>
+            <div className={cls('weekday')} style={{ height: weekHeight }}>
               <GridRow
                 gridDateEventModelMap={gridDateEventModelMap}
                 week={week}
                 rowInfo={rowInfo}
                 contentAreaHeight={cellContentAreaHeight}
                 isOneEventCalendar={isOneEventCalendar}
+                height={weekHeight}
               />
               <MonthEvents
                 name="month"

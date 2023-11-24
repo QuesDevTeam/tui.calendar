@@ -18,6 +18,7 @@ interface Props {
   rowInfo: CellStyle[];
   contentAreaHeight: number;
   isOneEventCalendar?: boolean;
+  height?: number;
 }
 
 export const GridRow = memo(function GridRow({
@@ -26,6 +27,7 @@ export const GridRow = memo(function GridRow({
   gridDateEventModelMap = {},
   contentAreaHeight,
   isOneEventCalendar = false,
+  height,
 }: Props) {
   const [container, containerRefCallback] = useDOMNode<HTMLDivElement>();
   const border = useTheme(useCallback((theme) => theme.common.border, []));
@@ -36,6 +38,7 @@ export const GridRow = memo(function GridRow({
         const dayIndex = date.getDay();
         const { width, left } = rowInfo[columnIndex];
         const ymd = toFormat(toStartOfDay(date), 'YYYYMMDD');
+        const heightStyle = height ? { height } : {};
 
         return (
           <GridCell
@@ -44,6 +47,7 @@ export const GridRow = memo(function GridRow({
             style={{
               width: toPercent(width),
               left: toPercent(left),
+              ...heightStyle,
             }}
             parentContainer={container}
             events={gridDateEventModelMap[ymd]}
