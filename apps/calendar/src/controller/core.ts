@@ -179,7 +179,12 @@ export function positionUIModels(
           MS_PER_DAY
         ).length;
 
-        uiModel.top = index;
+        if (typeof uiModel.model.raw === 'number') {
+          uiModel.top = uiModel.model.raw;
+        } else {
+          uiModel.top = index;
+        }
+
         uiModel.left = ymdListToRender.indexOf(ymd);
         uiModel.width = dateLength;
 
