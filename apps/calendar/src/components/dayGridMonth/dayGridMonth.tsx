@@ -127,7 +127,11 @@ export function DayGridMonth({
           <div
             key={`dayGrid-events-${rowIndex}`}
             className={cls('month-week-item')}
-            style={{ height: toPercent(rowHeight), overflow: 'auto', borderTop: border }}
+            style={{
+              height: toPercent(rowHeight),
+              overflow: isOneEventCalendar ? 'hidden' : 'auto',
+              borderTop: border,
+            }}
             ref={ref}
           >
             <div className={cls('weekday')} style={{ height: weekHeight, minHeight: '100%' }}>
