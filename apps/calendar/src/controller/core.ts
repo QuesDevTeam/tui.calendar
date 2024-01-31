@@ -179,8 +179,8 @@ export function positionUIModels(
           MS_PER_DAY
         ).length;
 
-        if (typeof uiModel.model.raw === 'number') {
-          uiModel.top = uiModel.model.raw;
+        if (uiModel.model.raw.order) {
+          uiModel.top = uiModel.model.raw.order;
         } else {
           uiModel.top = index;
         }
